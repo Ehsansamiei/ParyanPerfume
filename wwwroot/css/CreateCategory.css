@@ -1,0 +1,151 @@
+.add-category-container {
+    max-width: 1000px;
+    margin: auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.add-category-container h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #5a4d41;
+    font-size: 2rem;
+}
+
+.form-grid {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* سمت چپ */
+.upload-box {
+    flex: 1 1 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.upload-area {
+    position: relative;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    background: #f9f9f9;
+    cursor: pointer;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.upload-area:hover {
+    border-color: #b28704;
+}
+
+.upload-area input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+}
+
+.upload-icon {
+    font-size: 3rem;
+}
+
+.upload-placeholder {
+    position: relative;
+    z-index: 2;
+}
+
+.browse {
+    color: #007bff;
+    cursor: pointer;
+}
+
+.uploaded-preview {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+#upload-preview {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* سمت راست */
+.form-fields {
+    flex: 1 1 55%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #5a4d41;
+}
+
+.form-control {
+    padding: 12px 15px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.form-control:focus {
+    border-color: #b28704;
+    outline: none;
+    box-shadow: 0 0 10px rgba(178, 135, 4, 0.4);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 12px 25px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn-success {
+    background: linear-gradient(90deg, #b28704, #f5c518);
+    color: white;
+}
+
+.btn-success:hover {
+    background: linear-gradient(90deg, #f5c518, #b28704);
+}
+
+.btn-primary {
+    background-color: #5a4d41;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #7a6a54;
+}
+
+@media (max-width: 768px) {
+    .form-grid {
+        flex-direction: column;
+    }
+}

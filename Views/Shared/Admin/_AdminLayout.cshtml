@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>@ViewData["Title"]</title>
+    <link href="~/css/styles.css" rel="stylesheet" />
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/_AdminLayout.css" />
+
+
+</head>
+
+<body>
+
+    <div class="overlay" onclick="closeSidebar()"></div>
+
+    <button class="menu-toggle" onclick="toggleSidebar()" aria-label="toggleSidebar()">
+        <span class="bar top"></span>
+        <span class="bar middle"></span>
+        <span class="bar bottom"></span>
+    </button>
+
+    <div class="sidebar" id="sidebar">
+        <h2 class="text-center" style="top:5px;">پنل ادمین</h2>
+        <a href="/admin">صفحه اصلی</a>
+        <a href="/admin/categories">دسته بندی محصولات</a>
+        <a href="/admin/products">محصولات</a>
+    </div>
+
+
+    <div class="content">
+        @RenderBody()
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/scripts.js"></script>
+
+</body>
+
+
+
+<script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const menuBtn = document.querySelector('.menu-toggle');
+        const overlay = document.querySelector('.overlay');
+
+        const isOpen = sidebar.classList.contains('show');
+
+        sidebar.classList.toggle('show');
+        menuBtn.classList.toggle('active');
+        overlay.classList.toggle('show');
+    }
+
+    function closeSidebar() {
+        document.getElementById('sidebar').classList.remove('show');
+        document.querySelector('.menu-toggle').classList.remove('active');
+        document.querySelector('.overlay').classList.remove('show');
+    }
+</script>
+
+</html>

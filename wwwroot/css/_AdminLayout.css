@@ -1,0 +1,150 @@
+ body {
+ 	direction: rtl;
+ 	font-family: Arial, sans-serif;
+ 	margin: 0;
+ 	display: flex;
+ 	flex-direction: column;
+ }
+
+
+ .menu-toggle {
+ 	display: none;
+ 	position: fixed;
+ 	top: 15px;
+ 	right: 15px;
+ 	z-index: 1001;
+ 	width: 40px;
+	height: 40px;
+	background: transparent;
+ 	border-radius: 30px;
+ 	border: none;
+	z-index: 1002;
+ 	font-size: 24px;
+ 	padding: 10px;
+ 	cursor: pointer;
+ 	transition: all 0.3s ease-in-out;
+ }
+
+ .menu-toggle .bar{
+	display: block;
+	width: 30px;
+	height: 3px;
+	margin: 6px auto;
+	background-color: #333;
+	transition: all 0.3s ease-in-out;
+	border-radius: 2px;
+ }
+
+ .menu-toggle.active .top{
+	transform: translateY(9px) rotate(45deg);
+	background-color: aliceblue;
+}
+
+ .menu-toggle.active .middle {
+	opacity: 0;
+ }
+
+ .menu-toggle.active .bottom{
+	transform: translateY(-9px) rotate(-45deg);
+	background-color: aliceblue;
+ }
+
+ .menu-toggle :hover {
+ 	background-color: #444;
+ }
+
+ .sidebar {
+ 	width: 250px;
+ 	background-color: #333;
+ 	color: white;
+ 	position: fixed;
+ 	right: 0;
+ 	top: 0;
+ 	bottom: 0;
+ 	height: 100%;
+ 	padding: 2vh;
+ 	transition: transform 0.3s ease-in-out;
+ 	z-index: 1000;
+ 	transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+ 		opacity 0.3s ease,
+ 		visibility 0.3s;
+ }
+
+ .sidebar.show {
+ 	transform: translateX(0);
+ 	opacity: 1;
+ 	visibility: visible;
+ }
+
+
+
+ .sidebar a {
+ 	display: block;
+ 	color: white;
+ 	padding: 16px;
+ 	text-decoration: none;
+ }
+
+ .sidebar a:hover,
+ .dropdown-item:hover {
+ 	background-color: #575757;
+ }
+
+  .content {
+ 	margin-right: 250px;
+ 	margin-top: 60px;
+ 	padding: 16px;
+ }
+
+ @media (max-width:768px) {
+
+	.content{
+		margin-right: 0;
+		margin-top: 60px;
+	}
+
+ 	.menu-toggle {
+ 		display: block;
+ 	}
+
+ 	.sidebar {
+ 		right: 0;
+        top: 0;
+        transform: translateX(100%);
+        opacity: 0;
+        visibility: hidden;
+        z-index: 1000;
+        width: 250px;
+        height: 100%;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, visibility 0.3s;
+ 	}
+
+ 	.sidebar.show {
+ 		transform: translateX(0);
+ 		opacity: 1;
+ 		visibility: visible;
+ 	}
+
+ 	.content {
+ 		margin-right: 0;
+ 	}
+ }
+
+
+
+ .overlay{
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+	z-index: 999;
+	transition: opacity 0.3 ease;
+ }
+
+ .overlay.show{
+	display: block;
+	opacity: 1;
+ }

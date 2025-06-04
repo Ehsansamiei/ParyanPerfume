@@ -1,0 +1,23 @@
+@{
+    Layout = "~/Views/Shared/Admin/_AdminLayout.cshtml";
+}
+
+@using DataLayer
+@model Categories
+
+
+<h2>پاک کردن دسته بندی</h2>
+
+<div class="text-center">
+	<h3>از حذف این دسته بندی مطمین هستید؟</h3>
+
+	<dl class="collapse-horizontal">
+		<dt>نام دسته بندی : </dt>
+		<dd>@Model.CategoryName</dd>
+	</dl>
+
+	<form action="@Url.Action("DeleteCategory", "DeleteCategory", new { id = Model.CategoryId })" method="post">
+		<a class="btn btn-info" href="/Admin/categories">بازگشت به لیست</a>
+		<input type="submit" class="btn btn-danger" value="حذف"/>
+	</form>
+</div>
