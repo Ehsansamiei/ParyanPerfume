@@ -22,7 +22,7 @@ namespace DataLayer{
 
         // Navigation Property
         // Each Product blongs to one Category and each Category can have many Products 
-        public virtual ICollection<Perfumes> perfume { get; set; }
+        public virtual ICollection<Products> perfume { get; set; }
 
         public Categories()
         {
