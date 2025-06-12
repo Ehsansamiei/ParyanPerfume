@@ -1,5 +1,7 @@
 
 
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace ParyanPerfume.Dtos
 {
     public class ProductsDto
@@ -24,6 +26,7 @@ namespace ParyanPerfume.Dtos
 
         public int PricePer100gram { get; set; }
 
+        [NotMapped]
         public IFormFile? ImageFile { get; set; }
 
         public string? ImageName { get; set; }

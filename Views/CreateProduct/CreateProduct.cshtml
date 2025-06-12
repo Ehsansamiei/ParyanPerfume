@@ -1,0 +1,101 @@
+@{
+    Layout = "~/Views/Shared/Admin/_AdminLayout.cshtml";
+}
+
+@model ParyanPerfume.Dtos.ProductsDto
+
+<link rel="stylesheet" href="~/css/CreateProduct.css">
+
+<div class="add-product-container">
+    <h1>افزودن محصول جدید</h1>
+
+    <form asp-action="CreateProduct" asp-controller="CreateProduct" method="post" enctype="multipart/form-data" class="product-form">
+        <div class="form-sections">
+
+            <!-- 👈 ستون چپ: آپلود تصویر -->
+            <div class="upload-box">
+            <label for="ImageFile">افزودن تصویر</label>
+            <div class="upload-area" id="upload-area">
+                <input type="file" name="ImageFile" id="ImageFile" />
+                <div class="upload-placeholder" id="upload-placeholder">
+                    <span class="upload-icon">📷</span>
+                    <p>فایل را اینجا رها کنید یا <span class="browse">Browse</span></p>
+                </div>
+                <img id="upload-preview" style="display: none; max-width: 100%; border-radius: 10px;" />
+            </div>
+
+
+            <!-- 👉 ستون راست: اطلاعات محصول -->
+            <div class="product-details-section">
+
+                <div class="form-group">
+                    <label asp-for="ProductName">نام محصول</label>
+                    <input asp-for="ProductName" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ProductNickName">نام مستعار</label>
+                    <input asp-for="ProductNickName" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ProductBrand">برند</label>
+                    <input asp-for="ProductBrand" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ProductSex">مناسب برای</label>
+                    <select asp-for="ProductSex" class="form-control">
+                        <option value="مردانه">مردانه</option>
+                        <option value="زنانه">زنانه</option>
+                        <option value="یونیسکس">یونیسکس</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Price">قیمت</label>
+                    <input asp-for="Price" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ShortDescription">توضیح کوتاه</label>
+                    <textarea asp-for="ShortDescription" class="form-control"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ProductDescription">توضیحات کامل</label>
+                    <textarea asp-for="ProductDescription" class="form-control"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CategoryId">دسته‌بندی</label>
+                    <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId">
+                        <option value="">-- انتخاب دسته‌بندی --</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success">افزودن محصول</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    const fileInput = document.getElementById('ImageFile');
+    const placeholder = document.getElementById('upload-placeholder');
+    const previewImage = document.getElementById('upload-preview');
+
+    fileInput.addEventListener('change', function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                previewImage.src = e.target.result;
+                previewImage.style.display = 'block';
+                placeholder.style.display = 'none';
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+</script>

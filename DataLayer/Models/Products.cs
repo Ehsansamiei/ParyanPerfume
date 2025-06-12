@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataLayer{
     public class Products
@@ -25,6 +26,7 @@ namespace DataLayer{
 
         public int PricePer100gram { get; set; }
 
+        [NotMapped]
         public IFormFile? ImageFile { get; set; }
 
         public string? ImageName { get; set; }

@@ -1,5 +1,5 @@
 @using DataLayer
-@model IEnumerable<Perfumes>
+@model IEnumerable<Products>
 
 @{
     Layout = "~/Views/Shared/Admin/_AdminLayout.cshtml";
@@ -10,14 +10,14 @@
     <link href="~/css/styles.css" rel="stylesheet" />
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/GetAllCategories.css" />
+    <link rel="stylesheet" href="~/css/GetAllProducts.css" />
 </head>
 
 <table>
 	<tr>
 		<th>تصویر</th>
-		<th>نام دسته بندی</th>
-		<th>نام دسته بندی (لاتین)</th>
+		<th>نام محصول</th>
+		<th>نام محصول (لاتین)</th>
 		<th>توضیحات</th>
 		<th>عملیات</th>
 	</tr>
@@ -25,18 +25,18 @@
 	{
 		<tr>
 			<td>
-                <img src="/CategoryImages/@item.ImageName" class="thumbnail" style="max-width:120px"/>
+                <img src="/ProductImages/@item.ImageName" class="thumbnail" style="max-width:120px"/>
             </td>
-			<td>@item.PerfumeName</td>
-			<td>@item.PerfumeNickName</td>
-			<td>@item.PerfumeDescription</td>
+			<td>@item.ProductName</td>
+			<td>@item.ProductNickName</td>
+			<td>@item.ProductDescription</td>
 			<td>
-				<a class="btn btn-info btn-sm" href="/Admin/categories/Details/@item.CategoryId">جزیيات</a>
-				<a class="btn btn-warning btn-sm" href="/Admin/categories/Edit/@item.CategoryId">ویرایش</a>
-				<a class="btn btn-danger btn-sm" href="/Admin/categories/Delete/@item.CategoryId">حذف</a>
+				<a class="btn btn-info btn-sm" href="/Admin/Products/Details/@item.CategoryId">جزیيات</a>
+				<a class="btn btn-warning btn-sm" href="/Admin/Products/Edit/@item.CategoryId">ویرایش</a>
+				<a class="btn btn-danger btn-sm" href="/Admin/Products/Delete/@item.CategoryId">حذف</a>
 			</td>
 		</tr>
 	}
 </table>
 
-<a href="/admin/categories/create" class="btn btn-success"> جدید +</a>
+<a href="/admin/products/create" class="btn btn-success"> جدید +</a>

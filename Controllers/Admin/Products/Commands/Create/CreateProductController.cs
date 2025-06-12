@@ -2,6 +2,7 @@
 
 using DataLayer;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ParyanPerfume.Dtos;
 
 namespace ParyanPerfume.Controllers.Admin{
@@ -24,6 +25,7 @@ namespace ParyanPerfume.Controllers.Admin{
         [HttpGet("Create")]
         public IActionResult CreateProduct()
         {
+            ViewBag.CategoryId = new SelectList(_categoryRepository.GetAllCategories(), "CategoryId", "CategoryName");
             return View();
         }
 
