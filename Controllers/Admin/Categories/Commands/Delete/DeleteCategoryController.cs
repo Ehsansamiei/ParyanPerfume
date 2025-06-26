@@ -11,6 +11,7 @@ namespace ParyanPerfume.Controllers.Admin
         private readonly IWebHostEnvironment _webHostEnvironment;
         
 
+
         public DeleteCategoryController(ICategoryRepository categoryRepository, IWebHostEnvironment webHostEnvironment)
         {
             _categoryRepository = categoryRepository;
