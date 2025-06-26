@@ -4,7 +4,4 @@ obj/
 *.suo
 *.cache
 *.log
-.vs/
-appsettings.json
-appsettings.Development.josn
-wwwroot/CategoryImages
+
