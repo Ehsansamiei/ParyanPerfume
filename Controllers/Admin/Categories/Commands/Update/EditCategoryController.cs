@@ -20,6 +20,7 @@ namespace ParyanPerfume.Controllers.Admin
             _paryanPerfumeDbContext = paryanPerfumeDbContext;
 
         }
+        
         [HttpGet("Edit/{id}")]
         public IActionResult EditCategory(int? id)
         {

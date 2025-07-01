@@ -9,13 +9,15 @@ namespace ParyanPerfume.Controllers.Admin
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        
+        private readonly IProductRepository _productRepository;
 
 
-        public DeleteCategoryController(ICategoryRepository categoryRepository, IWebHostEnvironment webHostEnvironment)
+        public DeleteCategoryController(ICategoryRepository categoryRepository, IWebHostEnvironment webHostEnvironment, IProductRepository productRepository)
         {
+            _productRepository = productRepository;
             _categoryRepository = categoryRepository;
             _webHostEnvironment = webHostEnvironment;
+
         }
 
         [HttpGet("Delete/{id}")]
@@ -32,6 +34,8 @@ namespace ParyanPerfume.Controllers.Admin
                 {
                     return NotFound();
                 }
+                var products = _productRepository.GetProductsByCategoryId(id.Value);
+                ViewBag.ProdcutsInCategory = products;
                 return View(categoryItem);
             }
         }
@@ -39,19 +43,28 @@ namespace ParyanPerfume.Controllers.Admin
         [HttpPost("Delete/{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
+            var products = _productRepository.GetProductsByCategoryId(id); 
+
+            if (products.Any())
+            {
+                TempData["ErrorMessage"] = "تا زمانی که محصولات مرتبط با این دسته‌بندی وجود دارند، حذف امکان‌پذیر نیست.";
+                return RedirectToAction("DeleteCategory", new { id });
+            }
+
             var category = _categoryRepository.GetCategoryById(id);
             if (category == null)
-            {
+            { 
                 return NotFound();
             }
 
-
+            // حذف تصویر
             if (!string.IsNullOrEmpty(category.ImageName))
             {
                 var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "CategoryImages", category.ImageName);
                 if (System.IO.File.Exists(imagePath))
                 {
                     System.IO.File.Delete(imagePath);
+                    
                 }
             }
 
@@ -60,6 +73,7 @@ namespace ParyanPerfume.Controllers.Admin
 
             return RedirectToAction("GetAllCategories", "GetCategory");
         }
+
 
     }
 }

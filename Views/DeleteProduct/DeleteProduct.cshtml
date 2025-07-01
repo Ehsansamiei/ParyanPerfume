@@ -1,0 +1,15 @@
+@using DataLayer
+@model Products
+@{
+    Layout = "~/Views/Shared/Admin/_AdminLayout.cshtml";
+}
+
+<h2>
+    حذف محصول
+</h2>
+
+<form action="@Url.Action("DeleteProduct", "DeleteProduct", new { id = Model.ProductId })" method="post"
+    class="mt-3">
+    <a class="btn btn-info" href="/Admin/Products">بازگشت به لیست</a>
+    <input type="submit" class="btn btn-danger" value="حذف" />
+</form>

@@ -1,23 +1,64 @@
+@using DataLayer
+@model Categories
 @{
     Layout = "~/Views/Shared/Admin/_AdminLayout.cshtml";
 }
 
-@using DataLayer
-@model Categories
+<h2>حذف دسته‌بندی</h2>
 
-
-<h2>پاک کردن دسته بندی</h2>
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger text-center">
+        @TempData["ErrorMessage"]
+    </div>
+}
 
 <div class="text-center">
-	<h3>از حذف این دسته بندی مطمین هستید؟</h3>
+    <h3>آیا از حذف این دسته‌بندی مطمئن هستید؟</h3>
+    <p><strong>نام دسته‌بندی:</strong> @Model.CategoryName</p>
 
-	<dl class="collapse-horizontal">
-		<dt>نام دسته بندی : </dt>
-		<dd>@Model.CategoryName</dd>
-	</dl>
+	@if (ViewBag.ProdcutsInCategory != null && ((List<Products>)ViewBag.ProdcutsInCategory).Count > 0)
+{
+    <div class="alert alert-warning mt-3">
+        <strong>توجه:</strong> این دسته‌بندی دارای محصولات زیر است و قابل حذف نیست.
+    </div>
 
-	<form action="@Url.Action("DeleteCategory", "DeleteCategory", new { id = Model.CategoryId })" method="post">
-		<a class="btn btn-info" href="/Admin/categories">بازگشت به لیست</a>
-		<input type="submit" class="btn btn-danger" value="حذف"/>
-	</form>
+    <div class="table-responsive mt-3">
+        <table class="table table-bordered table-hover text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>تصویر</th>
+                    <th>نام محصول</th>
+                    <th>برند</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in (List<Products>)ViewBag.ProdcutsInCategory)
+                {
+                    <tr>
+                        <td>
+                            <img src="/ProductImages/@product.ImageName" alt="@product.ProductName" style="width: 100px; height: 100px; object-fit: cover;" />
+                        </td>
+                        <td>@product.ProductName</td>
+                        <td>@product.ProductBrand</td>
+                        <td>
+                            <a class="btn btn-danger btn-sm" href="/Admin/Products/Delete/@product.ProductId" onclick="return confirm('آیا از حذف این محصول مطمئن هستید؟')">حذف محصول</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+
+
+    else
+    {
+        <form action="@Url.Action("DeleteCategory", "DeleteCategory", new { id = Model.CategoryId })" method="post" class="mt-3">
+            <a class="btn btn-info" href="/Admin/categories">بازگشت به لیست</a>
+            <input type="submit" class="btn btn-danger" value="حذف" />
+        </form>
+    }
 </div>

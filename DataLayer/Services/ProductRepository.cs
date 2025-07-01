@@ -18,9 +18,19 @@ namespace DataLayer
             return _dbContext.product;
         }
 
+         public IEnumerable<Products> GetProductListById(int ProductId)
+        {
+            return _dbContext.product.Where(p => p.ProductId == ProductId).ToList();
+        }
+
         public Products GetProductById(int productId)
         {
             return _dbContext.product.Find(productId);
+        }
+
+        public List<Products> GetProductsByCategoryId(int categoryId)
+        {
+            return _dbContext.product.Where(p => p.CategoryId == categoryId).ToList();
         }
 
         public bool InsertProduct(Products product)
@@ -82,5 +92,6 @@ namespace DataLayer
         {
             return await _dbContext.SaveChangesAsync();
         }
+
     }
 }
