@@ -6,7 +6,78 @@
 @using ParyanPerfume.Dtos;
 @model CategoriesDto;
 
-<!DOCTYPE html>
+
+<link rel="stylesheet" href="~/css/CreateCategory.css" />
+
+
+
+<div class="add-category-container">
+    <h1>ویرایش دسته بندی </h1>
+    <form asp-action="EditCategory" asp-controller="EditCategory" asp-route-id="@Model.CategoryId" method="post"
+        enctype="multipart/form-data" class="form-grid">
+        <input type="hidden" name="CategoryId" value="@Model.CategoryId" />
+        <input type="hidden" name="ImageName" value="@Model.ImageName" />
+        <!-- سمت چپ: آپلود تصویر -->
+        <div class="upload-box">
+            <label for="ImageFile">افزودن تصویر</label>
+            <div class="upload-area" id="upload-area">
+                <input type="file" name="ImageFile" id="ImageFile" />
+                <div class="upload-placeholder" id="upload-placeholder">
+                    <span class="upload-icon">📷</span>
+                    <p>فایل را اینجا رها کنید یا <span class="browse">Browse</span></p>
+                </div>
+                <img id="upload-preview" style="display: none; max-width: 100%; border-radius: 10px;" />
+            </div>
+        </div>
+
+
+        <!-- سمت راست: فیلدهای فرم -->
+        <div class="form-fields">
+            <div class="form-group">
+                <label for="CategoryName">نام دسته بندی</label>
+                @Html.TextBoxFor(model => model.CategoryName, new { @class = "form-control", required = "required" })
+            </div>
+
+            <div class="form-group">
+                <label for="CategoryNickName">نام لاتین</label>
+                @Html.TextBoxFor(model => model.CategoryNickName, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label for="CategoryDescription">توضیحات</label>
+                @Html.TextAreaFor(model => model.CategoryDescription, new { @class = "form-control", rows = "4" })
+            </div>
+
+            <div class="form-actions">
+                <input type="submit" value="ذخیره دسته‌بندی" class="btn btn-success" />
+                <a href="/Admin/Categories" class="btn btn-primary">بازگشت</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+<script>
+    const fileInput = document.getElementById('ImageFile');
+    const placeholder = document.getElementById('upload-placeholder');
+    const previewImage = document.getElementById('upload-preview');
+
+    fileInput.addEventListener('change', function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                previewImage.src = e.target.result;
+                previewImage.style.display = 'block';
+                placeholder.style.display = 'none';
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+
+@* <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -53,4 +124,4 @@
 
     <button type="submit" class="btn btn-success">ذخیره تغییرات</button>
     <a href="/admin/categories" class="btn btn-secondary">بازگشت</a>
-</form>
+</form> *@
