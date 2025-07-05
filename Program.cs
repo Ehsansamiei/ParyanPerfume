@@ -14,6 +14,7 @@ builder.Services.AddDbContext<ParyanPerfumeDbContext>(option => {
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
+builder.WebHost.UseUrls("http://*:5012");
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

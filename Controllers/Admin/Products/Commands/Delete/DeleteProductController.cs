@@ -15,24 +15,6 @@ namespace ParyanPerfume.Controllers.Admin
             _webHostEnvironment = webHostEnvironment;
         }
 
-        // [HttpGet("Delete/{id}")]
-        // public IActionResult DeleteProduct(int? id)
-        // {
-        //     if (id == null)
-        //     {
-        //         return NotFound();
-        //     }
-        //     else
-        //     {
-        //         var ProductItem = _productRepository.GetProductById(id.Value);
-        //         if (ProductItem == null)
-        //         {
-        //             return NotFound();
-        //         }
-        //         return View(ProductItem);
-        //     }
-        // }
-
         [HttpPost("Delete/{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
