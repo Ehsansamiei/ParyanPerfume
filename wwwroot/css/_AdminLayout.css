@@ -6,6 +6,9 @@
  	flex-direction: column;
  }
 
+ .menu-toggle span{
+	width: 4rem;
+ }
 
  .menu-toggle {
  	display: none;
@@ -27,12 +30,13 @@
 
  .menu-toggle .bar{
 	display: block;
-	width: 30px;
+	width: 4rem;
 	height: 3px;
-	margin: 6px auto;
+	margin: 9px 10px 0px 0px;
 	background-color: #333;
 	transition: all 0.3s ease-in-out;
 	border-radius: 2px;
+	padding: 3px;
  }
 
  .menu-toggle.active .top{
@@ -45,7 +49,7 @@
  }
 
  .menu-toggle.active .bottom{
-	transform: translateY(-9px) rotate(-45deg);
+	transform: translateY(-20px) rotate(-45deg);
 	background-color: aliceblue;
  }
 
@@ -54,7 +58,7 @@
  }
 
  .sidebar {
- 	width: 250px;
+ 	width: 15rem;
  	background-color: #333;
  	color: white;
  	position: fixed;
@@ -96,11 +100,11 @@
  	padding: 16px;
  }
 
- @media (max-width:768px) {
+ @media (max-width:1000px) {
 
 	.content{
 		margin-right: 0;
-		margin-top: 60px;
+		margin-top: 6rem;
 	}
 
  	.menu-toggle {
@@ -108,16 +112,18 @@
  	}
 
  	.sidebar {
+		font-size: 2rem;
  		right: 0;
         top: 0;
         transform: translateX(100%);
         opacity: 0;
         visibility: hidden;
         z-index: 1000;
-        width: 250px;
+        width: 30rem;
         height: 100%;
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, visibility 0.3s;
- 	}
+		padding: 6rem 0px 0px 0px;
+	}
 
  	.sidebar.show {
  		transform: translateX(0);
@@ -127,6 +133,7 @@
 
  	.content {
  		margin-right: 0;
+		font-size: 1.5rem;
  	}
  }
 
