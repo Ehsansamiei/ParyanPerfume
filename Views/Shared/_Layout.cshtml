@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="fa">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ParyanPerfume.styles.css" asp-append-version="true" />
 </head>
+
 <body dir="rtl">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white ">
@@ -16,27 +18,42 @@
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img style="height: 5rem;" src="logo.png" alt="پریان پرفیوم">
                 </a>
-                
+
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">صفحه اصلی</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                                صفحه اصلی
+
+                                <img src="@Url.Content("~/Site-Icons/home.svg")" alt="خانه"
+                                    style="width: 1.2vw; height: auto;" />
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">فروشگاه</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">فروشگاه
+
+                                <img src="@Url.Content("~/Site-Icons/shop.svg")" alt="فروشگاه"
+                                    style="width: 1.2vw; height: auto;" />
+                            </a>
                         </li>
-                        
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">وبلاگ</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">وبلاگ
+
+                                <img src="@Url.Content("~/Site-Icons/document-text.svg")" alt="وبلاگ"
+                                    style="width: 1.2vw; height: auto;" />
+                            </a>
                         </li>
-                        
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">درباره ما</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">درباره
+                                ما
+
+                                <img src="@Url.Content("~/Site-Icons/info-circle.svg")" alt="درباره ما"
+                                    style="width: 1.2vw; height: auto;" />
+                            </a>
                         </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">تماس با ما</a>
-                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -49,10 +66,11 @@
         </main>
     </div>
 
-   
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
