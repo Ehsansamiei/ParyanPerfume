@@ -6,7 +6,7 @@ namespace DataLayer
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
         public int Price { get; set; }
         public double Volume { get; set; }
         public string? Material { get; set; } // شیشه، پلاستیک، ...

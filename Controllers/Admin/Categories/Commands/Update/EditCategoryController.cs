@@ -37,10 +37,9 @@ namespace ParyanPerfume.Controllers.Admin
 
             var dto = new CategoriesDto
             {
-                CategoryId = category.CategoryId,
-                CategoryName = category.CategoryName,
-                CategoryNickName = category.CategoryNickName,
-                CategoryDescription = category.CategoryDescription,
+                CategoryId = category.Id,
+                CategoryName = category.Name,
+                CategoryDescription = category.Description,
                 ImageName = category.ImageName
             };
             return View(dto);
@@ -57,15 +56,14 @@ namespace ParyanPerfume.Controllers.Admin
                 return View(Dto);
             }
 
-            var category = await _paryanPerfumeDbContext.category.FindAsync(Dto.CategoryId);
+            var category = await _paryanPerfumeDbContext.categories.FindAsync(Dto.CategoryId);
             if (category == null)
             {
                 return NotFound();
             }
 
-            category.CategoryName = Dto.CategoryName;
-            category.CategoryNickName = Dto.CategoryNickName;
-            category.CategoryDescription = Dto.CategoryDescription;
+            category.Name = Dto.CategoryName;
+            category.Description = Dto.CategoryDescription;
 
             // اگر عکس جدید نیومده، عکس قبلی رو نگه دار
             if (Dto.ImageFile == null && !string.IsNullOrEmpty(Dto.ImageName))

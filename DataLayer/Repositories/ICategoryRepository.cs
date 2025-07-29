@@ -4,12 +4,12 @@ namespace DataLayer
 {
     public interface ICategoryRepository : IDisposable
     {
-        IEnumerable<Categories> GetAllCategories();
-        Categories GetCategoryById(int CategoryId);
-        bool InsertCategory(Categories category);
-        Task<bool> UpdataCategory(Categories categories);
+        IEnumerable<Category> GetAllCategories();
+        Category GetCategoryById(int CategoryId);
+        bool InsertCategory(Category category);
+        Task<bool> UpdataCategory(Category categories);
         bool DeleteCategory(int CategoryId);
-        bool DeleteCategory(Categories category);
+        bool DeleteCategory(Category category);
 
         Task<int> SaveAsync();
     }

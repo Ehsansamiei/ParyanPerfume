@@ -9,12 +9,12 @@ namespace ParyanPerfume.Controllers.Admin
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly IProductRepository _productRepository;
+        private readonly IPerfumeRepository _perfumeRepository;
 
 
-        public DeleteCategoryController(ICategoryRepository categoryRepository, IWebHostEnvironment webHostEnvironment, IProductRepository productRepository)
+        public DeleteCategoryController(ICategoryRepository categoryRepository, IWebHostEnvironment webHostEnvironment, IPerfumeRepository perfumeRepository)
         {
-            _productRepository = productRepository;
+            _perfumeRepository = perfumeRepository;
             _categoryRepository = categoryRepository;
             _webHostEnvironment = webHostEnvironment;
 
@@ -34,7 +34,7 @@ namespace ParyanPerfume.Controllers.Admin
                 {
                     return NotFound();
                 }
-                var products = _productRepository.GetProductsByCategoryId(id.Value);
+                var products = _perfumeRepository.GetPerfumesByCategoryId(id.Value);
                 ViewBag.ProdcutsInCategory = products;
                 return View(categoryItem);
             }
@@ -43,7 +43,7 @@ namespace ParyanPerfume.Controllers.Admin
         [HttpPost("Delete/{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            var products = _productRepository.GetProductsByCategoryId(id); 
+            var products = _perfumeRepository.GetPerfumesByCategoryId(id); 
 
             if (products.Any())
             {

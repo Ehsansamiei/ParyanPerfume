@@ -35,12 +35,11 @@ namespace ParyanPerfume.Controllers.Admin
             if (ModelState.IsValid)
             {
 
-                var category = new Categories
+                var category = new Category
                 {
-                    CategoryId = categoriesDto.CategoryId,
-                    CategoryName = categoriesDto.CategoryName,
-                    CategoryNickName = categoriesDto.CategoryNickName,
-                    CategoryDescription = categoriesDto.CategoryDescription
+                    Id = categoriesDto.CategoryId,
+                    Name = categoriesDto.CategoryName,
+                    Description = categoriesDto.CategoryDescription
                 };
 
                 if (categoriesDto.ImageFile != null)
