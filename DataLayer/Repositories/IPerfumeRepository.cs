@@ -2,7 +2,7 @@
 
 namespace DataLayer
 {
-    public interface IProductRepository : IDisposable
+    public interface IPerfumeRepository : IDisposable
     {
         IEnumerable<Perfume> GetAllPerfumes();
         IEnumerable<Perfume> GetPerfumeListById(int ProductId);

@@ -3,21 +3,22 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using ParyanPerfume.Dtos;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Cryptography;
 
 
 namespace ParyanPerfume.Controllers.Admin
 {
-    [Route("Admin/Products")]
-    public class EditProductController : Controller
+    [Route("Admin/Perfumes")]
+    public class EditPerfumeController : Controller
     {
-        private readonly IProductRepository _productRepository;
+        private readonly IPerfumeRepository _perfumeRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly ICategoryRepository _categoryRepository;
         private readonly ParyanPerfumeDbContext _paryanPerfumeDbContext;
 
-        public EditProductController(IProductRepository productRepository,  ParyanPerfumeDbContext paryanPerfumeDbContext, ICategoryRepository categoryRepository, IWebHostEnvironment webHostEnvironment)
+        public EditPerfumeController(IPerfumeRepository perfumeRepository,  ParyanPerfumeDbContext paryanPerfumeDbContext, ICategoryRepository categoryRepository, IWebHostEnvironment webHostEnvironment)
         {
-            _productRepository = productRepository;
+            _perfumeRepository = perfumeRepository;
             _webHostEnvironment = webHostEnvironment;
             _categoryRepository = categoryRepository;
             _paryanPerfumeDbContext = paryanPerfumeDbContext;
@@ -31,26 +32,24 @@ namespace ParyanPerfume.Controllers.Admin
                 return NotFound();
             }
 
-            var product = _productRepository.GetProductById(id.Value);
+            var product = _perfumeRepository.GetPerfumeById(id.Value);
             if (product == null)
             {
                 return NotFound();
             }
 
-            var dto = new ProductsDto
+            var dto = new Perfume
             {
                 CategoryId = product.CategoryId,
-                ProductId = product.ProductId,
-                ProductName = product.ProductName,
-                ProductNickName = product.ProductNickName,
+                Id = product.Id,
+                Name = product.Name,
                 Price = product.Price,
                 PricePer100gram = product.PricePer100gram,
-                ShortDescription = product.ShortDescription,
                 ImageName = product.ImageName,
-                ProductBrand = product.ProductBrand,
-                ProductDescription = product.ProductDescription,
-                ProductSex = product.ProductSex,
-                ShowInSlider = product.ShowInSlider,
+                Brand = product.Brand,
+                Description = product.Description,
+                Gender = product.Gender,
+                ShowInSlider = product.ShowInSlider
             };
 
             ViewBag.CategoryId = new SelectList(_categoryRepository.GetAllCategories(), "CategoryId", "CategoryName");
@@ -58,7 +57,7 @@ namespace ParyanPerfume.Controllers.Admin
         }
 
         [HttpPost("Edit/{id}")]
-        public async Task<IActionResult> EditProduct(ProductsDto Dto)
+        public async Task<IActionResult> EditProduct(PerfumesDto Dto)
         {
             if (!ModelState.IsValid)
             {
@@ -67,32 +66,30 @@ namespace ParyanPerfume.Controllers.Admin
                 return View(Dto);
             }
 
-            var product = _productRepository.GetProductById(Dto.ProductId);
-            if (product == null)
+            var perfume = _perfumeRepository.GetPerfumeById(Dto.Id);
+            if (perfume == null)
             {
                 return NotFound();
             }
-            product.CategoryId = product.CategoryId;
-            product.ProductId = product.ProductId;
-            product.ProductName = product.ProductName;
-            product.ProductNickName = product.ProductNickName;
-            product.Price = product.Price;
-            product.PricePer100gram = product.PricePer100gram;
-            product.ShortDescription = product.ShortDescription;
-            product.ImageName = product.ImageName;
-            product.ProductBrand = product.ProductBrand;
-            product.ProductDescription = product.ProductDescription;
-            product.ProductSex = product.ProductSex;
-            product.ShowInSlider = product.ShowInSlider;
+            perfume.CategoryId = perfume.CategoryId;
+            perfume.Id = perfume.Id;
+            perfume.Name = perfume.Name;
+            perfume.Price = perfume.Price;
+            perfume.PricePer100gram = perfume.PricePer100gram;
+            perfume.ImageName = perfume.ImageName;
+            perfume.Brand = perfume.Brand;
+            perfume.Description = perfume.Description;
+            perfume.Gender = perfume.Gender;
+            perfume.ShowInSlider = perfume.ShowInSlider;
 
             if (Dto.ImageFile == null && !string.IsNullOrEmpty(Dto.ImageName)) {
-                product.ImageName = Dto.ImageName;
+                perfume.ImageName = Dto.ImageName;
             }
 
             if (Dto.ImageFile != null) {
-                if (!string.IsNullOrEmpty(product.ImageName))
+                if (!string.IsNullOrEmpty(perfume.ImageName))
                 {
-                    var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, "ProductImages", product.ImageName);
+                    var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, "ProductImages", perfume.ImageName);
                     if (System.IO.File.Exists(oldImagePath))
                     {
                         System.IO.File.Delete(oldImagePath);
@@ -111,10 +108,10 @@ namespace ParyanPerfume.Controllers.Admin
                 {
                     await Dto.ImageFile.CopyToAsync(stream);
                 }
-                product.ImageName = fileName;
+                perfume.ImageName = fileName;
             }
 
-            await _productRepository.SaveAsync();
+            await _perfumeRepository.SaveAsync();
             return RedirectToAction("GetAllProducts", "GetProdcut");
         }
     }

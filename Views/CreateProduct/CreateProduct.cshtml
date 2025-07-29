@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/Admin/_AdminLayout.cshtml";
 }
 
-@model ParyanPerfume.Dtos.ProductsDto
+@model ParyanPerfume.Dtos.PerfumesDto
 
 <link rel="stylesheet" href="~/css/CreateProduct.css">
 
@@ -29,23 +29,20 @@
             <div class="product-details-section">
 
                 <div class="form-group">
-                    <label asp-for="ProductName">نام محصول</label>
-                    <input asp-for="ProductName" class="form-control" />
+                    <label asp-for="Name">نام محصول</label>
+                    <input asp-for="Name" class="form-control" />
+                </div>
+
+               
+
+                <div class="form-group">
+                    <label asp-for="Brand">برند</label>
+                    <input asp-for="Brand" class="form-control" />
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="ProductNickName">نام مستعار</label>
-                    <input asp-for="ProductNickName" class="form-control" />
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="ProductBrand">برند</label>
-                    <input asp-for="ProductBrand" class="form-control" />
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="ProductSex">مناسب برای</label>
-                    <select asp-for="ProductSex" class="form-control">
+                    <label asp-for="Gender">مناسب برای</label>
+                    <select asp-for="Gender" class="form-control">
                         <option value="مردانه">مردانه</option>
                         <option value="زنانه">زنانه</option>
                         <option value="یونیسکس">یونیسکس</option>
@@ -57,14 +54,10 @@
                     <input asp-for="Price" class="form-control" />
                 </div>
 
-                <div class="form-group">
-                    <label asp-for="ShortDescription">توضیح کوتاه</label>
-                    <textarea asp-for="ShortDescription" class="form-control"></textarea>
-                </div>
 
                 <div class="form-group">
-                    <label asp-for="ProductDescription">توضیحات کامل</label>
-                    <textarea asp-for="ProductDescription" class="form-control"></textarea>
+                    <label asp-for="Description">توضیحات کامل</label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
                 </div>
 
                 <div class="form-group">

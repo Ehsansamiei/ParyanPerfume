@@ -11,21 +11,21 @@ namespace DataLayer
             _dbContext = dbContext;
         }
 
-        public IEnumerable<Categories> GetAllCategories()
+        public IEnumerable<Category> GetAllCategories()
         {
-            return _dbContext.category;
+            return _dbContext.categories;
         }
 
-        public  Categories GetCategoryById(int CategoryId)
+        public  Category GetCategoryById(int CategoryId)
         {
-            return  _dbContext.category.Find(CategoryId);
+            return  _dbContext.categories.Find(CategoryId);
         }
 
-        public bool InsertCategory(Categories category)
+        public bool InsertCategory(Category categories)
         {
             try
             {
-                _dbContext.category.Add(category);
+                _dbContext.categories.Add(categories);
                 return true;
             }
             catch
@@ -34,7 +34,7 @@ namespace DataLayer
             }
         }
 
-        public async Task<bool> UpdataCategory(Categories categories)
+        public async Task<bool> UpdataCategory(Category categories)
         {
             _dbContext.Entry(categories).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
@@ -45,8 +45,8 @@ namespace DataLayer
         {
             try
             {
-                var category = GetCategoryById(CategoryId);
-                DeleteCategory(category);
+                var categories = GetCategoryById(CategoryId);
+                DeleteCategory(categories);
                 return true;
             }
             catch
@@ -55,7 +55,7 @@ namespace DataLayer
             }
         }
 
-        public bool DeleteCategory(Categories category)
+        public bool DeleteCategory(Category category)
         {
             try
             {

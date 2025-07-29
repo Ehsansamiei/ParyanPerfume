@@ -3,15 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ParyanPerfume.Controllers.Admin
 {
-    [Route("Admin/Products")]
-    public class DeleteProductController : Controller
+    [Route("Admin/Perfumes")]
+    public class DeletePerfumeController : Controller
     {
-        private readonly IProductRepository _productRepository;
+        private readonly IPerfumeRepository _perfumeRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public DeleteProductController(IProductRepository productRepository, IWebHostEnvironment webHostEnvironment)
+        public DeletePerfumeController(IPerfumeRepository perfumeRepository, IWebHostEnvironment webHostEnvironment)
         {
-            _productRepository = productRepository;
+            _perfumeRepository = perfumeRepository;
             _webHostEnvironment = webHostEnvironment;
         }
 
@@ -19,7 +19,7 @@ namespace ParyanPerfume.Controllers.Admin
         public async Task<IActionResult> DeleteProduct(int id)
         {
 
-            var product = _productRepository.GetProductById(id);
+            var product = _perfumeRepository.GetPerfumeById(id);
             if (product == null)
             {
                 return NotFound();
@@ -34,8 +34,8 @@ namespace ParyanPerfume.Controllers.Admin
                 }
 
             }
-            _productRepository.DeleteProduct(product);
-            await _productRepository.SaveAsync();
+            _perfumeRepository.DeletePerfume(product);
+            await _perfumeRepository.SaveAsync();
 
             return RedirectToAction("GetAllProducts", "GetProduct");
         }
