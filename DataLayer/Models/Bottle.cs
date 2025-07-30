@@ -13,7 +13,7 @@ namespace DataLayer
         public string? ImageName { get; set; }
 
         public int CategoryId { get; set; }
-        public required Category Category { get; set; }
+        
 
     }
 

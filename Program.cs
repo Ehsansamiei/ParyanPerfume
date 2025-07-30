@@ -11,7 +11,7 @@ builder.Services.AddDbContext<ParyanPerfumeDbContext>(option => {
     option.UseSqlite(connectionString);
 });
 
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
 builder.Services.AddScoped<IPerfumeRepository, PerfumeRepository>();
 
 builder.WebHost.UseUrls("http://*:5012");

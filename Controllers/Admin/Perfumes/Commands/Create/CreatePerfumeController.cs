@@ -12,12 +12,12 @@ namespace ParyanPerfume.Controllers.Admin
     public class CreatePerfumeController : Controller
     {
         private readonly IPerfumeRepository _perfumeRepository;
-        private readonly ICategoryRepository _categoryRepository;
+        
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public CreatePerfumeController(ICategoryRepository categoryRepository, IPerfumeRepository perfumeRepository, IWebHostEnvironment webHostEnvironment)
+        public CreatePerfumeController(IPerfumeRepository perfumeRepository, IWebHostEnvironment webHostEnvironment)
         {
-            _categoryRepository = categoryRepository;
+            
             _webHostEnvironment = webHostEnvironment;
             _perfumeRepository = perfumeRepository;
         }

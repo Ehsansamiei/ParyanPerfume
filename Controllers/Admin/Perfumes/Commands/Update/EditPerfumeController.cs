@@ -13,14 +13,12 @@ namespace ParyanPerfume.Controllers.Admin
     {
         private readonly IPerfumeRepository _perfumeRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly ICategoryRepository _categoryRepository;
         private readonly ParyanPerfumeDbContext _paryanPerfumeDbContext;
 
-        public EditPerfumeController(IPerfumeRepository perfumeRepository,  ParyanPerfumeDbContext paryanPerfumeDbContext, ICategoryRepository categoryRepository, IWebHostEnvironment webHostEnvironment)
+        public EditPerfumeController(IPerfumeRepository perfumeRepository,  ParyanPerfumeDbContext paryanPerfumeDbContext, IWebHostEnvironment webHostEnvironment)
         {
             _perfumeRepository = perfumeRepository;
             _webHostEnvironment = webHostEnvironment;
-            _categoryRepository = categoryRepository;
             _paryanPerfumeDbContext = paryanPerfumeDbContext;
         }
 
@@ -52,7 +50,7 @@ namespace ParyanPerfume.Controllers.Admin
                 ShowInSlider = product.ShowInSlider
             };
 
-            ViewBag.CategoryId = new SelectList(_categoryRepository.GetAllCategories(), "CategoryId", "CategoryName");
+        
             return View(dto);
         }
 
