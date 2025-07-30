@@ -40,7 +40,7 @@ namespace ParyanPerfume.Controllers.Admin
 
             var dto = new Perfume
             {
-                CategoryId = product.CategoryId,
+                
                 Id = product.Id,
                 Name = product.Name,
                 Price = product.Price,
@@ -71,7 +71,7 @@ namespace ParyanPerfume.Controllers.Admin
             {
                 return NotFound();
             }
-            perfume.CategoryId = perfume.CategoryId;
+            
             perfume.Id = perfume.Id;
             perfume.Name = perfume.Name;
             perfume.Price = perfume.Price;

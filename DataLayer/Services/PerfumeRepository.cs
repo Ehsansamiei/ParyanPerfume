@@ -28,10 +28,10 @@ namespace DataLayer
             return _dbContext.perfumes.Find(productId);
         }
 
-        public List<Perfume> GetPerfumesByCategoryId(int categoryId)
-        {
-            return _dbContext.perfumes.Where(p => p.CategoryId == categoryId).ToList();
-        }
+        // public List<Perfume> GetPerfumesByCategoryId(int categoryId)
+        // {
+        //     return _dbContext.perfumes.Where(p => p.CategoryId == categoryId).ToList();
+        // }
 
         public bool InsertPerfume(Perfume perfumes)
         {

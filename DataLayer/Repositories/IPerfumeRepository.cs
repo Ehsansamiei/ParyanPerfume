@@ -6,7 +6,7 @@ namespace DataLayer
     {
         IEnumerable<Perfume> GetAllPerfumes();
         IEnumerable<Perfume> GetPerfumeListById(int ProductId);
-        List<Perfume> GetPerfumesByCategoryId(int categoryId);
+        // List<Perfume> GetPerfumesByCategoryId(int categoryId);
 
         Perfume GetPerfumeById(int ProductId);
         bool InsertPerfume(Perfume product);

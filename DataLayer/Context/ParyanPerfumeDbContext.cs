@@ -25,12 +25,12 @@ namespace DataLayer
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<Perfume>(c =>
-            {
-                c.HasOne(c => c.Category)
-                .WithMany(c => c.Perfumes)
-                .HasForeignKey(c => c.CategoryId);
-            });
+            // builder.Entity<Perfume>(c =>
+            // {
+            //     c.HasOne(c => c.Category)
+            //     .WithMany(c => c.Perfumes)
+            //     .HasForeignKey(c => c.CategoryId);
+            // });
             builder.Entity<Bottle>()
                 .HasOne(b => b.Category)
                 .WithMany(c => c.Bottles)

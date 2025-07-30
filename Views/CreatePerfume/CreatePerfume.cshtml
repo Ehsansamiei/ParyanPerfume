@@ -1,16 +1,15 @@
 @{
     Layout = "~/Views/Shared/Admin/_AdminLayout.cshtml";
 }
-@using DataLayer;
-@using ParyanPerfume.Dtos;
-@model PerfumesDto;
+
+@model ParyanPerfume.Dtos.PerfumesDto
 
 <link rel="stylesheet" href="~/css/CreateProduct.css">
 
 <div class="add-product-container">
     <h1>افزودن محصول جدید</h1>
 
-    <form asp-action="EditProduct" asp-controller="EditProduct" method="post" enctype="multipart/form-data" class="product-form">
+    <form asp-action="CreatePerfume" asp-controller="CreatePerfume" method="post" enctype="multipart/form-data" class="product-form">
         <div class="form-sections">
 
             <!-- 👈 ستون چپ: آپلود تصویر -->
@@ -26,23 +25,24 @@
             </div>
 
 
-            <!-- 👉 ستون راست: اطلاعات محصول -->
+           
             <div class="product-details-section">
 
                 <div class="form-group">
                     <label asp-for="Name">نام محصول</label>
-                    <input asp-for="Name" class="form-control" value="@Model.Name" />
+                    <input asp-for="Name" class="form-control" />
                 </div>
 
+               
 
                 <div class="form-group">
                     <label asp-for="Brand">برند</label>
-                    <input asp-for="Brand" class="form-control" value="@Model.Brand"/>
+                    <input asp-for="Brand" class="form-control" />
                 </div>
 
                 <div class="form-group">
                     <label asp-for="Gender">مناسب برای</label>
-                    <select asp-for="Gender" class="form-control" aria-selected="@Model.Gender">
+                    <select asp-for="Gender" class="form-control">
                         <option value="مردانه">مردانه</option>
                         <option value="زنانه">زنانه</option>
                         <option value="یونیسکس">یونیسکس</option>
@@ -51,22 +51,21 @@
 
                 <div class="form-group">
                     <label asp-for="Price">قیمت</label>
-                    <input asp-for="Price" class="form-control" value="@Model.Price"/>
+                    <input asp-for="Price" class="form-control" />
                 </div>
 
-              
 
                 <div class="form-group">
                     <label asp-for="Description">توضیحات کامل</label>
-                    <textarea asp-for="Description" class="form-control">@Model.Description</textarea>
+                    <textarea asp-for="Description" class="form-control"></textarea>
                 </div>
 
-                <div class="form-group">
+                @* <div class="form-group">
                     <label asp-for="CategoryId">دسته‌بندی</label>
-                    <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId" >
+                    <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId">
                         <option value="">-- انتخاب دسته‌بندی --</option>
                     </select>
-                </div>
+                </div> *@
 
                 <button type="submit" class="btn btn-success">افزودن محصول</button>
             </div>

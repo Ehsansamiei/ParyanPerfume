@@ -26,7 +26,7 @@ namespace ParyanPerfume.Controllers.Admin
         [HttpGet("Create")]
         public IActionResult CreatePerfume()
         {
-            ViewBag.CategoryId = new SelectList(_categoryRepository.GetAllCategories(), "CategoryId", "CategoryName");
+            
             return View();
         }
 
@@ -37,7 +37,7 @@ namespace ParyanPerfume.Controllers.Admin
             {
                 var perfume = new Perfume
                 {
-                    CategoryId = perfumesDto.CategoryId,
+                  
                     Name = perfumesDto.Name,
                     Description = perfumesDto.Description,
                     Brand = perfumesDto.Brand,

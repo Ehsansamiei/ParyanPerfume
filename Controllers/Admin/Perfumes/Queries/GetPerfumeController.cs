@@ -16,7 +16,7 @@ namespace ParyanPerfume.Controllers.Admin
         }
 
         [HttpGet]
-        public IActionResult GetAllProducts()
+        public IActionResult GetAllPerfumes()
         {
             var perfumes = _perfumeRepository.GetAllPerfumes();
             return View(perfumes);

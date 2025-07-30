@@ -34,8 +34,8 @@ namespace ParyanPerfume.Controllers.Admin
                 {
                     return NotFound();
                 }
-                var products = _perfumeRepository.GetPerfumesByCategoryId(id.Value);
-                ViewBag.ProdcutsInCategory = products;
+                // var products = _perfumeRepository.GetPerfumesByCategoryId(id.Value);
+                // ViewBag.ProdcutsInCategory = products;
                 return View(categoryItem);
             }
         }
@@ -43,13 +43,13 @@ namespace ParyanPerfume.Controllers.Admin
         [HttpPost("Delete/{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            var products = _perfumeRepository.GetPerfumesByCategoryId(id); 
+            // var products = _perfumeRepository.GetPerfumesByCategoryId(id); 
 
-            if (products.Any())
-            {
-                TempData["ErrorMessage"] = "تا زمانی که محصولات مرتبط با این دسته‌بندی وجود دارند، حذف امکان‌پذیر نیست.";
-                return RedirectToAction("DeleteCategory", new { id });
-            }
+            // if (products.Any())
+            // {
+            //     TempData["ErrorMessage"] = "تا زمانی که محصولات مرتبط با این دسته‌بندی وجود دارند، حذف امکان‌پذیر نیست.";
+            //     return RedirectToAction("DeleteCategory", new { id });
+            // }
 
             var category = _categoryRepository.GetCategoryById(id);
             if (category == null)
