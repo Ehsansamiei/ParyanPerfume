@@ -37,7 +37,7 @@ namespace ParyanPerfume.Controllers.Admin
             _perfumeRepository.DeletePerfume(product);
             await _perfumeRepository.SaveAsync();
 
-            return RedirectToAction("GetAllProducts", "GetProduct");
+            return RedirectToAction("GetAllPerfumes", "GetPerfume");
         }
     }
 }

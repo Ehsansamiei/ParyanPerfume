@@ -10,14 +10,24 @@ namespace DataLayer
 
     public class ParyanPerfumeDbContext : DbContext
     {
-        public ParyanPerfumeDbContext(DbContextOptions<ParyanPerfumeDbContext> option) : base(option)
+        public ParyanPerfumeDbContext(DbContextOptions<ParyanPerfumeDbContext> options)
+            : base(options)
         {
         }
 
-        
-        public DbSet<Perfume> perfumes { get; set; }
-        public DbSet<Bottle> bottles { get; set; }
-        public DbSet<Fixator> fixators { get; set; }
-        public DbSet<Pocket> pockets { get; set; }
+        public DbSet<Product> Products { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>()
+                .HasDiscriminator<string>("ProductType")
+                .HasValue<Perfume>("Perfume")
+                .HasValue<Bottle>("Bottle")
+                .HasValue<Fixator>("Fixator")
+                .HasValue<Pocket>("Pocket");
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
+
 }
