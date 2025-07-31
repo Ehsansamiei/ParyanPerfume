@@ -1,6 +1,13 @@
 ﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+.main-container {
+    max-width: 1300px; /* یا هر عرضی که مناسب طرحت هست */
+    margin: 0 auto;     /* این باعث میشه عنصر وسط صفحه قرار بگیره */
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -45,4 +52,52 @@ button.accept-policy {
   width: 100%;
   white-space: nowrap;
   line-height: 60px;
+}
+
+/* CSS */
+.custom-search {
+  display: flex;
+  align-items: center;
+  background-color: #f5ede5;
+  border-radius: 999px;
+  padding: 6px 10px;
+  width: fit-content;
+  direction: rtl;
+}
+
+.custom-search input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+  color: #5e5e5e;
+  padding: 6px 10px;
+  width: 150px;
+}
+
+.custom-search button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.custom-search button img {
+  width: 16px;
+  height: 16px;
+}
+
+/* برای حذف border آبی در فوکوس در بعضی مرورگرها */
+.custom-search input:focus,
+.custom-search button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.Search-Icon{
+  left: 2rem;
 }

@@ -9,69 +9,92 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ParyanPerfume.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 </head>
 
 <body dir="rtl">
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white ">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img style="height: 5rem;" src="logo.png" alt="پریان پرفیوم">
-                </a>
+    <div class="main-container">
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white ">
+                <div class="container-fluid">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img style="height: 5rem;" src="logo.png" alt="پریان پرفیوم">
+                    </a>
 
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
-                                صفحه اصلی
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                                    صفحه اصلی
 
-                                <img src="@Url.Content("~/Site-Icons/home.svg")" alt="خانه"
-                                    style="width: 1.2vw; height: auto;" />
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">فروشگاه
+                                    <img src="@Url.Content("~/Site-Icons/home.svg")" alt="خانه"
+                                        style="width: 1.2vw; height: auto;" />
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home"
+                                    asp-action="Privacy">فروشگاه
 
-                                <img src="@Url.Content("~/Site-Icons/shop.svg")" alt="فروشگاه"
-                                    style="width: 1.2vw; height: auto;" />
-                            </a>
-                        </li>
+                                    <img src="@Url.Content("~/Site-Icons/shop.svg")" alt="فروشگاه"
+                                        style="width: 1.2vw; height: auto;" />
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">وبلاگ
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home"
+                                    asp-action="Privacy">وبلاگ
 
-                                <img src="@Url.Content("~/Site-Icons/document-text.svg")" alt="وبلاگ"
-                                    style="width: 1.2vw; height: auto;" />
-                            </a>
-                        </li>
+                                    <img src="@Url.Content("~/Site-Icons/document-text.svg")" alt="وبلاگ"
+                                        style="width: 1.2vw; height: auto;" />
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">درباره
-                                ما
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home"
+                                    asp-action="Privacy">درباره
+                                    ما
 
-                                <img src="@Url.Content("~/Site-Icons/info-circle.svg")" alt="درباره ما"
-                                    style="width: 1.2vw; height: auto;" />
-                            </a>
-                        </li>
+                                    <img src="@Url.Content("~/Site-Icons/info-circle.svg")" alt="درباره ما"
+                                        style="width: 1.2vw; height: auto;" />
+                                </a>
+                            </li>
 
-                    </ul>
-                    
-                    <form class="d-flex ms-auto" method="get" action="/Search/Result">
-                        <input class="form-control me-2" type="search" placeholder="جستجو..." name="query"
-                            aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">جستجو</button>
-                    </form>
+                        </ul>
 
+                        <!-- HTML -->
+                        <form class="custom-search" method="get" action="/Search/Result">
+                            <input type="text" name="query" placeholder="جستجوی محصول">
+                            <button type="submit">
+                                <svg class="Search-Icon" height="30px" viewBox="-2.4 -2.4 28.80 28.80" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke="#ff0000" stroke-width="0.048"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path
+                                            d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
+                                            stroke="#000000" stroke-width="2.4" stroke-linecap="round"
+                                            stroke-linejoin="round"></path>
+                                    </g>
+                                </svg>
+                            </button>
+                        </form>
+
+
+
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </header>
+            </nav>
+        </header>
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
     </div>
+
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
