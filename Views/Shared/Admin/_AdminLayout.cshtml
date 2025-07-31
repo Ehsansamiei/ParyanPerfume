@@ -24,12 +24,19 @@
     <div class="sidebar" id="sidebar">
         <h2 class="text-center" style="top:5px;">پنل ادمین</h2>
         <a href="/">تماشای سایت
-            <img src="@Url.Content("~/Site-Icons/home.svg")" alt="خانه"
-                                    style="width: 1.2vw; height: auto;" />
+            <img src="@Url.Content("~/Site-Icons/home.svg")" alt="خانه" style="width: 1.2vw; height: auto;" />
         </a>
         <a href="/admin">صفحه اصلی</a>
-        <a href="/admin/categories">دسته بندی محصولات</a>
-        <a href="/admin/perfumes">محصولات</a>
+        <div class="sidebar-dropdown">
+            <button class="sidebar-main-link" id="productsToggle">محصولات</button>
+            <div class="sidebar-submenu" id="productsSubmenu">
+                <a href="/admin/perfumes">عطر</a>
+                <a href="/admin/fixators">فیکساتور</a>
+                <a href="/admin/bottles">بطری</a>
+                <a href="/admin/pockets">پاکت</a>
+            </div>
+        </div>
+         <a href="/admin/blog">مقالات</a>
     </div>
 
 
@@ -62,6 +69,24 @@
         document.querySelector('.menu-toggle').classList.remove('active');
         document.querySelector('.overlay').classList.remove('show');
     }
+
+    const toggleBtn = document.getElementById("productsToggle");
+    const submenu = document.getElementById("productsSubmenu");
+
+    toggleBtn.addEventListener("click", () => {
+        submenu.classList.toggle("active");
+    });
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleBtn = document.getElementById("productsToggle");
+        const submenu = document.getElementById("productsSubmenu");
+
+        toggleBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            submenu.classList.toggle("show");
+        });
+    });
 </script>
 
 </html>

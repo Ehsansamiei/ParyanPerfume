@@ -11,15 +11,15 @@ namespace ParyanPerfume.Controllers.Admin
 
     public class CreatePerfumeController : Controller
     {
-        private readonly IPerfumeRepository _perfumeRepository;
-        
+       
+        private readonly ProductService<Perfume> _perfumeService;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public CreatePerfumeController(IPerfumeRepository perfumeRepository, IWebHostEnvironment webHostEnvironment)
+        public CreatePerfumeController(ProductService<Perfume> perfumeService, IWebHostEnvironment webHostEnvironment)
         {
-            
+
             _webHostEnvironment = webHostEnvironment;
-            _perfumeRepository = perfumeRepository;
+            _perfumeService = perfumeService;
         }
 
 
@@ -63,8 +63,8 @@ namespace ParyanPerfume.Controllers.Admin
                     }
                     perfume.ImageName = fileName;
                 }
-                _perfumeRepository.InsertPerfume(perfume);
-                var result = await _perfumeRepository.SaveAsync();
+                _perfumeService.AddProduct(perfume);
+                var result = await _perfumeService.SaveAsync();
 
                 Console.WriteLine($"saved : {result}");
             }

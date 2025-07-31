@@ -1,17 +1,19 @@
 using DataLayer;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ParyanPerfume.Controllers.Admin
 {
     [Route("Admin/Perfumes")]
     public class DeletePerfumeController : Controller
     {
-        private readonly IPerfumeRepository _perfumeRepository;
+
+        private readonly ProductService<Perfume> _perfumeService;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public DeletePerfumeController(IPerfumeRepository perfumeRepository, IWebHostEnvironment webHostEnvironment)
+        public DeletePerfumeController(ProductService<Perfume> perfumeService, IWebHostEnvironment webHostEnvironment)
         {
-            _perfumeRepository = perfumeRepository;
+            _perfumeService = perfumeService;
             _webHostEnvironment = webHostEnvironment;
         }
 
@@ -19,7 +21,7 @@ namespace ParyanPerfume.Controllers.Admin
         public async Task<IActionResult> DeleteProduct(int id)
         {
 
-            var product = _perfumeRepository.GetPerfumeById(id);
+            var product = _perfumeService.GetProductById(id);
             if (product == null)
             {
                 return NotFound();
@@ -34,8 +36,8 @@ namespace ParyanPerfume.Controllers.Admin
                 }
 
             }
-            _perfumeRepository.DeletePerfume(product);
-            await _perfumeRepository.SaveAsync();
+            _perfumeService.DeleteProduct(product.Id);
+            await _perfumeService.SaveAsync();
 
             return RedirectToAction("GetAllPerfumes", "GetPerfume");
         }

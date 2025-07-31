@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ParyanPerfume.Dtos;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Cryptography;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 
 namespace ParyanPerfume.Controllers.Admin
@@ -11,15 +12,17 @@ namespace ParyanPerfume.Controllers.Admin
     [Route("Admin/Perfumes")]
     public class EditPerfumeController : Controller
     {
-        private readonly IPerfumeRepository _perfumeRepository;
+       
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly ParyanPerfumeDbContext _paryanPerfumeDbContext;
+        private readonly ProductService<Perfume> _perfumeService;
 
-        public EditPerfumeController(IPerfumeRepository perfumeRepository,  ParyanPerfumeDbContext paryanPerfumeDbContext, IWebHostEnvironment webHostEnvironment)
+        public EditPerfumeController(ParyanPerfumeDbContext paryanPerfumeDbContext, IWebHostEnvironment webHostEnvironment, ProductService<Perfume> perfumeService)
         {
-            _perfumeRepository = perfumeRepository;
+
             _webHostEnvironment = webHostEnvironment;
             _paryanPerfumeDbContext = paryanPerfumeDbContext;
+            _perfumeService = perfumeService;
         }
 
         [HttpGet("Edit/{id}")]
@@ -30,7 +33,7 @@ namespace ParyanPerfume.Controllers.Admin
                 return NotFound();
             }
 
-            var product = _perfumeRepository.GetPerfumeById(id.Value);
+            var product = _perfumeService.GetProductById(id.Value);
             if (product == null)
             {
                 return NotFound();
@@ -64,7 +67,7 @@ namespace ParyanPerfume.Controllers.Admin
                 return View(Dto);
             }
 
-            var perfume = _perfumeRepository.GetPerfumeById(Dto.Id);
+            var perfume = _perfumeService.GetProductById(Dto.Id);
             if (perfume == null)
             {
                 return NotFound();
@@ -109,7 +112,7 @@ namespace ParyanPerfume.Controllers.Admin
                 perfume.ImageName = fileName;
             }
 
-            await _perfumeRepository.SaveAsync();
+            await _perfumeService.SaveAsync();
             return RedirectToAction("GetAllProducts", "GetProdcut");
         }
     }

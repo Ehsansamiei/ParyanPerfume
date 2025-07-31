@@ -8,17 +8,18 @@ namespace ParyanPerfume.Controllers.Admin
     [Route("Admin/Perfumes")]
     public class GetPerfumeController : Controller
     {
-        private readonly IPerfumeRepository _perfumeRepository;
+        
+        private readonly ProductService<Perfume> _perfumeService;
 
-        public GetPerfumeController(IPerfumeRepository perfumeRepository)
+        public GetPerfumeController(ProductService<Perfume> perfumeService)
         {
-            _perfumeRepository = perfumeRepository;
+            _perfumeService = perfumeService;
         }
 
         [HttpGet]
         public IActionResult GetAllPerfumes()
         {
-            var perfumes = _perfumeRepository.GetAllPerfumes();
+            var perfumes = _perfumeService.GetAllProducts();
             return View(perfumes);
         }
     }

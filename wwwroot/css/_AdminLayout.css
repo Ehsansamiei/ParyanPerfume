@@ -6,8 +6,8 @@
  	flex-direction: column;
  }
 
- .menu-toggle span{
-	width: 4rem;
+ .menu-toggle span {
+ 	width: 4rem;
  }
 
  .menu-toggle {
@@ -17,40 +17,40 @@
  	right: 15px;
  	z-index: 1001;
  	width: 40px;
-	height: 40px;
-	background: transparent;
+ 	height: 40px;
+ 	background: transparent;
  	border-radius: 30px;
  	border: none;
-	z-index: 1002;
+ 	z-index: 1002;
  	font-size: 24px;
  	padding: 10px;
  	cursor: pointer;
  	transition: all 0.3s ease-in-out;
  }
 
- .menu-toggle .bar{
-	display: block;
-	width: 4rem;
-	height: 3px;
-	margin: 9px 10px 0px 0px;
-	background-color: #333;
-	transition: all 0.3s ease-in-out;
-	border-radius: 2px;
-	padding: 3px;
+ .menu-toggle .bar {
+ 	display: block;
+ 	width: 4rem;
+ 	height: 3px;
+ 	margin: 9px 10px 0px 0px;
+ 	background-color: #333;
+ 	transition: all 0.3s ease-in-out;
+ 	border-radius: 2px;
+ 	padding: 3px;
  }
 
- .menu-toggle.active .top{
-	transform: translateY(9px) rotate(45deg);
-	background-color: aliceblue;
-}
+ .menu-toggle.active .top {
+ 	transform: translateY(9px) rotate(45deg);
+ 	background-color: aliceblue;
+ }
 
  .menu-toggle.active .middle {
-	opacity: 0;
+ 	opacity: 0;
  }
 
- .menu-toggle.active .bottom{
-	transform: translateY(-20px) rotate(-45deg);
-	background-color: aliceblue;
+ .menu-toggle.active .bottom {
+ 	transform: translateY(-20px) rotate(-45deg);
+ 	background-color: aliceblue;
  }
 
  .menu-toggle :hover {
@@ -94,7 +94,7 @@
  	background-color: #575757;
  }
 
-  .content {
+ .content {
  	margin-right: 250px;
  	margin-top: 60px;
  	padding: 16px;
@@ -102,28 +102,28 @@
 
  @media (max-width:1000px) {
 
-	.content{
-		margin-right: 0;
-		margin-top: 6rem;
-	}
+ 	.content {
+ 		margin-right: 0;
+ 		margin-top: 6rem;
+ 	}
 
  	.menu-toggle {
  		display: block;
  	}
 
  	.sidebar {
-		font-size: 2rem;
+ 		font-size: 2rem;
  		right: 0;
-        top: 0;
-        transform: translateX(100%);
-        opacity: 0;
-        visibility: hidden;
-        z-index: 1000;
-        width: 30rem;
-        height: 100%;
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, visibility 0.3s;
-		padding: 6rem 0px 0px 0px;
-	}
+ 		top: 0;
+ 		transform: translateX(100%);
+ 		opacity: 0;
+ 		visibility: hidden;
+ 		z-index: 1000;
+ 		width: 30rem;
+ 		height: 100%;
+ 		transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, visibility 0.3s;
+ 		padding: 6rem 0px 0px 0px;
+ 	}
 
  	.sidebar.show {
  		transform: translateX(0);
@@ -133,25 +133,66 @@
 
  	.content {
  		margin-right: 0;
-		font-size: 1.5rem;
+ 		font-size: 1.5rem;
  	}
  }
 
 
 
- .overlay{
-	display: none;
-	position: fixed;
-	top: 0;
-	right: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.4);
-	z-index: 999;
-	transition: opacity 0.3 ease;
+ .overlay {
+ 	display: none;
+ 	position: fixed;
+ 	top: 0;
+ 	right: 0;
+ 	width: 100%;
+ 	height: 100%;
+ 	background-color: rgba(0, 0, 0, 0.4);
+ 	z-index: 999;
+ 	transition: opacity 0.3 ease;
  }
 
- .overlay.show{
-	display: block;
-	opacity: 1;
+ .overlay.show {
+ 	display: block;
+ 	opacity: 1;
+ }
+
+ .sidebar-dropdown {
+ 	margin-top: 0.5rem;
+ }
+
+ .sidebar-main-link {
+ 	width: 100%;
+ 	display: block;
+ 	color: white;
+ 	padding: 16px;
+ 	text-align: right;
+ 	text-decoration: none;
+ 	font-weight: bold;
+ 	background-color: #333;
+ 	border: none;
+ 	outline: none;
+ 	cursor: pointer;
+ }
+
+ .sidebar-submenu {
+ 	max-height: 0;
+ 	overflow: hidden;
+ 	transition: max-height 0.3s ease, opacity 0.3s ease;
+ 	opacity: 0;
+ }
+
+ .sidebar-submenu a {
+ 	padding: 12px 32px;
+ 	display: block;
+ 	color: white;
+ 	text-decoration: none;
+ }
+
+ .sidebar-submenu a:hover {
+ 	background-color: #575757;
+ }
+
+ .sidebar-submenu.show {
+ 	max-height: 500px;
+ 	opacity: 1;
  }

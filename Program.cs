@@ -12,7 +12,9 @@ builder.Services.AddDbContext<ParyanPerfumeDbContext>(option => {
 });
 
 
-builder.Services.AddScoped<IPerfumeRepository, PerfumeRepository>();
+
+builder.Services.AddScoped(typeof(IProductRepository<>), typeof(ProductRepository<>));
+builder.Services.AddScoped(typeof(ProductService<>));
 
 builder.WebHost.UseUrls("http://*:5012");
 var app = builder.Build();
