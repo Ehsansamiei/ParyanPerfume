@@ -12,7 +12,7 @@ namespace ParyanPerfume.Controllers.Admin
     [Route("Admin/Perfumes")]
     public class EditPerfumeController : Controller
     {
-       
+
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly ParyanPerfumeDbContext _paryanPerfumeDbContext;
         private readonly ProductService<Perfume> _perfumeService;
@@ -26,7 +26,7 @@ namespace ParyanPerfume.Controllers.Admin
         }
 
         [HttpGet("Edit/{id}")]
-        public IActionResult EditProduct(int? id)
+        public IActionResult EditPerfume(int? id)
         {
             if (id == null)
             {
@@ -41,7 +41,7 @@ namespace ParyanPerfume.Controllers.Admin
 
             var dto = new Perfume
             {
-                
+
                 Id = product.Id,
                 Name = product.Name,
                 Price = product.Price,
@@ -53,12 +53,12 @@ namespace ParyanPerfume.Controllers.Admin
                 ShowInSlider = product.ShowInSlider
             };
 
-        
+
             return View(dto);
         }
 
         [HttpPost("Edit/{id}")]
-        public async Task<IActionResult> EditProduct(PerfumesDto Dto)
+        public async Task<IActionResult> EditPerfume(PerfumesDto Dto)
         {
             if (!ModelState.IsValid)
             {
@@ -72,25 +72,22 @@ namespace ParyanPerfume.Controllers.Admin
             {
                 return NotFound();
             }
-            
-            perfume.Id = perfume.Id;
-            perfume.Name = perfume.Name;
-            perfume.Price = perfume.Price;
-            perfume.PricePer100gram = perfume.PricePer100gram;
-            perfume.ImageName = perfume.ImageName;
-            perfume.Brand = perfume.Brand;
-            perfume.Description = perfume.Description;
-            perfume.Gender = perfume.Gender;
-            perfume.ShowInSlider = perfume.ShowInSlider;
 
-            if (Dto.ImageFile == null && !string.IsNullOrEmpty(Dto.ImageName)) {
-                perfume.ImageName = Dto.ImageName;
-            }
+          
+            perfume.Name = Dto.Name;
+            perfume.Price = Dto.Price;
+            perfume.PricePer100gram = Dto.PricePer100gram;
+            perfume.Brand = Dto.Brand;
+            perfume.Description = Dto.Description;
+            perfume.Gender = Dto.Gender;
+            perfume.ShowInSlider = Dto.ShowInSlider;
 
-            if (Dto.ImageFile != null) {
+            if (Dto.ImageFile != null)
+            {
+                
                 if (!string.IsNullOrEmpty(perfume.ImageName))
                 {
-                    var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, "ProductImages", perfume.ImageName);
+                    var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, "PerfumeImages", perfume.ImageName);
                     if (System.IO.File.Exists(oldImagePath))
                     {
                         System.IO.File.Delete(oldImagePath);
@@ -98,22 +95,28 @@ namespace ParyanPerfume.Controllers.Admin
                 }
 
                 var fileName = Guid.NewGuid() + Path.GetExtension(Dto.ImageFile.FileName);
-                var filePath = Path.Combine(_webHostEnvironment.WebRootPath, "ProductImages");
+                var filePath = Path.Combine(_webHostEnvironment.WebRootPath, "PerfumeImages");
 
                 if (!Directory.Exists(filePath))
                 {
                     Directory.CreateDirectory(filePath);
                 }
+
                 var newPath = Path.Combine(filePath, fileName);
                 using (var stream = new FileStream(newPath, FileMode.Create))
                 {
                     await Dto.ImageFile.CopyToAsync(stream);
                 }
+
                 perfume.ImageName = fileName;
+            }
+            else if (string.IsNullOrEmpty(perfume.ImageName) && !string.IsNullOrEmpty(Dto.ImageName))
+            {
+                perfume.ImageName = Dto.ImageName;
             }
 
             await _perfumeService.SaveAsync();
-            return RedirectToAction("GetAllProducts", "GetProdcut");
+            return RedirectToAction("GetAllPerfumes", "GetPerfume");
         }
     }
 }

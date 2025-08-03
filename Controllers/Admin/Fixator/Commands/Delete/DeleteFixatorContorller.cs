@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ParyanPerfume.Controllers.Admin
 {
-    [Route("Admin/Fixator")]
+    [Route("Admin/Fixators")]
     public class DeleteFixatorContorller : Controller
     {
         private readonly ProductService<Fixator> _fixatorService;
