@@ -52,15 +52,19 @@ namespace ParyanPerfume.Controllers.Admin
                 {
                     string fileName = Guid.NewGuid() + Path.GetExtension(perfumesDto.ImageFile.FileName);
                     string filePath = Path.Combine(_webHostEnvironment.WebRootPath, "PerfumeImages");
+
                     if (!Directory.Exists(filePath))
                     {
                         Directory.CreateDirectory(filePath);
                     }
+
                     string filePath2 = Path.Combine(filePath, fileName);
+
                     using (var filestream = new FileStream(filePath2, FileMode.Create))
                     {
                         await perfumesDto.ImageFile.CopyToAsync(filestream);
                     }
+                    
                     perfume.ImageName = fileName;
                 }
                 _perfumeService.AddProduct(perfume);

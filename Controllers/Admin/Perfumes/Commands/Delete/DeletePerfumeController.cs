@@ -22,6 +22,7 @@ namespace ParyanPerfume.Controllers.Admin
         {
 
             var product = _perfumeService.GetProductById(id);
+
             if (product == null)
             {
                 return NotFound();
@@ -34,7 +35,6 @@ namespace ParyanPerfume.Controllers.Admin
                 {
                     System.IO.File.Delete(imagePath);
                 }
-
             }
             _perfumeService.DeleteProduct(product.Id);
             await _perfumeService.SaveAsync();
