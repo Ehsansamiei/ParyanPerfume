@@ -1,0 +1,100 @@
+@using DataLayer 
+@model IEnumerable<Bottle>
+
+@{
+    Layout = "~/Views/Shared/Admin/_AdminLayout.cshtml";
+}
+
+
+<head>
+
+	<link href="~/css/styles.css" rel="stylesheet" />
+	<script type="importmap"></script>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/GetAllPerfumes.css" />
+</head>
+<h2>فیکساتور</h2>
+<table>
+	<tr>
+		<th>تصویر</th>
+		<th>نام محصول</th>
+		<th>توضیحات</th>
+		<th>عملیات</th>
+	</tr>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@if (!string.IsNullOrEmpty(item.ImageName))
+                {
+                    <img src="/BottleImages/@item.ImageName" class="thumbnail" style="max-width:120px" />
+                }
+                else
+                {
+                    <span>بدون تصویر</span>
+                }
+			</td>
+			<td>@item.Name</td>
+			<td>@item.Description</td>
+			<td>
+				<a href="/Admin/Bottles/Edit/@item.Id">
+
+					<svg width="2rem" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#38c3ff"></path><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#292929"></path></g></svg>
+
+				</a>
+				
+				<a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"
+					data-product-id="@item.Id" data-product-name="@item.Name"
+					data-product-image="/BottleImages/@item.ImageName">
+
+					<svg width="2rem" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000" stroke="#000000" stroke-width="4.096"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M779.5 1002.7h-535c-64.3 0-116.5-52.3-116.5-116.5V170.7h768v715.5c0 64.2-52.3 116.5-116.5 116.5zM213.3 256v630.1c0 17.2 14 31.2 31.2 31.2h534.9c17.2 0 31.2-14 31.2-31.2V256H213.3z" fill="#d10000"></path><path d="M917.3 256H106.7C83.1 256 64 236.9 64 213.3s19.1-42.7 42.7-42.7h810.7c23.6 0 42.7 19.1 42.7 42.7S940.9 256 917.3 256zM618.7 128H405.3c-23.6 0-42.7-19.1-42.7-42.7s19.1-42.7 42.7-42.7h213.3c23.6 0 42.7 19.1 42.7 42.7S642.2 128 618.7 128zM405.3 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7S448 403 448 426.6v256c0 23.6-19.1 42.7-42.7 42.7zM618.7 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v256c-0.1 23.6-19.2 42.7-42.7 42.7z" fill="#d10000"></path></g></svg>
+
+				</a>
+
+			</td>
+		</tr>
+	}
+</table>
+
+<a href="/admin/Bottles/create" class="btn btn-success"> جدید +</a>
+
+<div class="modal fade" dir="rtl" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">حذف محصول</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p>آیا مطمئن هستید که می‌خواهید این محصول را حذف کنید؟</p>
+                <h4 id="modalProductName"></h4>
+                <img id="modalProductImage" src="" class="img-thumbnail" style="max-width: 150px;" />
+            </div>
+            <div class="modal-footer">
+                <form id="deleteForm" method="post">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
+                    <button type="submit" class="btn btn-danger">تأیید حذف</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var deleteModal = document.getElementById('deleteModal');
+    deleteModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var productId = button.getAttribute('data-product-id');
+        var productName = button.getAttribute('data-product-name');
+        var productImage = button.getAttribute('data-product-image');
+
+        var modalProductName = deleteModal.querySelector('#modalProductName');
+        var modalProductImage = deleteModal.querySelector('#modalProductImage');
+        var deleteForm = deleteModal.querySelector('#deleteForm');
+
+        modalProductName.textContent = productName;
+        modalProductImage.src = productImage;
+        deleteForm.action = '/Admin/Bottles/Delete/' + productId;
+    });
+</script>
