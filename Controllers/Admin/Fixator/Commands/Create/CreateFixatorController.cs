@@ -35,7 +35,7 @@ namespace ParyanPerfume.Controllers.Admin
                     Brand = fixatorsDto.Description,
                     Price = fixatorsDto.Price,
                     PricePer20Liters = fixatorsDto.PricePer20Liters,
-                    CreatedAt = fixatorsDto.CreatedAt,
+                    CreatedAt = DateTime.Now,
                     IsAlcoholFree = fixatorsDto.IsAlcoholFree,
                     ShowInSlider = fixatorsDto.ShowInSlider
                 };

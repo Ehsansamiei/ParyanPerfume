@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/Admin/_AdminLayout.cshtml";
 }
 
-@model ParyanPerfume.Dtos.FixatorsDto
+@model DataLayer.Bottle
 
 
 <link rel="stylesheet" href="~/css/CreateProduct.css">
@@ -10,11 +10,19 @@
 <div class="add-product-container">
     <h1>افزودن محصول جدید</h1>
 
-    <form asp-action="CreateBottle" asp-controller="CreateBottle" method="post" enctype="multipart/form-data"
+    <form asp-action="EditBottle" asp-controller="EditBottle" method="post" enctype="multipart/form-data"
         class="product-form">
         <div class="form-sections">
 
-            <!-- 👈 ستون چپ: آپلود تصویر -->
+
+            @if (!string.IsNullOrEmpty(Model.ImageName))
+            {
+                <div class="current-image">
+                    <label>تصویر فعلی:</label>
+                    <img src="~/BottleImages/@Model.ImageName" style="max-width: 200px; border-radius: 10px;" />
+                </div>
+            }
+
             <div class="upload-box">
                 <label for="ImageFile">افزودن تصویر</label>
                 <div class="upload-area" id="upload-area">
@@ -30,7 +38,7 @@
 
                 <div class="product-details-section">
 
-                    <div class="form-group">
+                   <div class="form-group">
                         <label asp-for="Name">نام محصول</label>
                         <input asp-for="Name" class="form-control" />
                     </div>
@@ -39,15 +47,30 @@
                         <label asp-for="Brand">برند</label>
                         <input asp-for="Brand" class="form-control" />
                     </div>
+                    
+                    <div class="form-group">
+                        <label asp-for="Material"> جنس شیشه</label>
+                        <input asp-for="Material" class="form-control" />
+                    </div>
 
                     <div class="form-group">
-                        <label asp-for="PricePer20Liters"> قیمت هر 20 لیتر</label>
-                        <input asp-for="PricePer20Liters" class="form-control" />
+                        <label asp-for="Volume">حجم شیشه</label>
+                        <input asp-for="Volume" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label asp-for="Price">قیمت</label>
                         <input asp-for="Price" class="form-control" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label asp-for="QuantityInCarton">تعداد در کارتن</label>
+                        <input asp-for="QuantityInCarton" class="form-control" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label asp-for="QuantityInPackaging">تعداد در بسته</label>
+                        <input asp-for="QuantityInPackaging" class="form-control" />
                     </div>
 
                     <div class="form-group">
@@ -55,12 +78,7 @@
                         <textarea asp-for="Description" class="form-control"></textarea>
                     </div>
 
-                    <div class="form-group form-check">
-                        <input asp-for="IsAlcoholFree" class="form-check-input" />
-                        <label asp-for="IsAlcoholFree" class="form-check-label">بدون الکل</label>
-                    </div>
-
-                    <button type="submit" class="btn btn-success">افزودن محصول</button>
+                    <button type="submit" class="btn btn-success">ذخیره تغییرات</button>
                 </div>
             </div>
     </form>
