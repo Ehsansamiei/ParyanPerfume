@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace ParyanPerfume.Controllers.Admin
 {
     [Route("Admin/Accesories")]
-    class GetAllAccesoryController : Controller
+    public class GetAccesoryController : Controller
     {
         private readonly ProductService<Pocket> _accesoryService;
 
-        public GetAllAccesoryController(ProductService<Pocket> accesoryService)
+        public GetAccesoryController(ProductService<Pocket> accesoryService)
         {
             _accesoryService = accesoryService;
         }
